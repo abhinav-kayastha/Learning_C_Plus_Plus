@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Function to replace all occurrences of a character with underscores
 void replaceCharWithUnderscore(string &str, char replaceChar) {
     for (char &character : str) {
         if (character == replaceChar) {
@@ -26,10 +25,10 @@ int main() {
 
     if (choice == "stop") {
         return 0;
-    } else {
-        char replacement_char = choice[0];
+    }
 
-        // Call the function to replace occurrences of the character with underscores
+    else {
+        char replacement_char = choice[0];
         replaceCharWithUnderscore(sentence, replacement_char);
     }
 
