@@ -1,9 +1,18 @@
 #include "iostream"
+#include <string>
 
 using namespace std;
 
-int main() {
+// Function to replace all occurrences of a character with underscores
+void replaceCharWithUnderscore(string &str, char replaceChar) {
+    for (char &character : str) {
+        if (character == replaceChar) {
+            character = '_';
+        }
+    }
+}
 
+int main() {
     string sentence;
     string choice;
 
@@ -17,18 +26,14 @@ int main() {
 
     if (choice == "stop") {
         return 0;
-    }
-
-    else {
+    } else {
         char replacement_char = choice[0];
-        for (char character : sentence) {
-            if (character == replacement_char) {
-                int pos = sentence.find(choice, 0);
-                sentence[pos] = '_';
-            }
-        }
+
+        // Call the function to replace occurrences of the character with underscores
+        replaceCharWithUnderscore(sentence, replacement_char);
     }
 
     cout << "Result: " << sentence;
 
+    return 0;
 }

@@ -139,6 +139,39 @@ build 2.1.exe: CXX_EXECUTABLE_LINKER__2.2e1_Debug CMakeFiles/2.1.dir/2.1.cpp.obj
   TARGET_IMPLIB = lib2.1.dll.a
   TARGET_PDB = 2.1.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target 3.1
+
+
+#############################################
+# Order-only phony target for 3.1
+
+build cmake_object_order_depends_target_3.1: phony || CMakeFiles/3.1.dir
+
+build CMakeFiles/3.1.dir/3.1.cpp.obj: CXX_COMPILER__3.2e1_unscanned_Debug C$:/Users/abhin/CLionProjects/Learning_C++/3.1.cpp || cmake_object_order_depends_target_3.1
+  DEP_FILE = CMakeFiles\3.1.dir\3.1.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\3.1.dir
+  OBJECT_FILE_DIR = CMakeFiles\3.1.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target 3.1
+
+
+#############################################
+# Link the executable 3.1.exe
+
+build 3.1.exe: CXX_EXECUTABLE_LINKER__3.2e1_Debug CMakeFiles/3.1.dir/3.1.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\3.1.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = 3.1.exe
+  TARGET_IMPLIB = lib3.1.dll.a
+  TARGET_PDB = 3.1.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -171,6 +204,8 @@ build 1.2: phony 1.2.exe
 
 build 2.1: phony 2.1.exe
 
+build 3.1: phony 3.1.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -179,7 +214,7 @@ build 2.1: phony 2.1.exe
 #############################################
 # Folder: C:/Users/abhin/CLionProjects/Learning_C++/cmake-build-debug
 
-build all: phony 1.1.exe 1.2.exe 2.1.exe
+build all: phony 1.1.exe 1.2.exe 2.1.exe 3.1.exe
 
 # =============================================================================
 # Built-in targets
