@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Learning_C__",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "1.1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-1.1-Debug-eb7c6cec90048747e2f3.json",
+					"name" : "1.1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "1.2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-1.2-Debug-859e880103f625164a17.json",
+					"name" : "1.2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "2.1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-2.1-Debug-786341b42c52d181939d.json",
+					"name" : "2.1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "2.2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-2.2-Debug-c0f7339d3c87c49c3f6f.json",
+					"name" : "2.2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "3.1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-3.1-Debug-6b165483ea1d178f65f8.json",
+					"name" : "3.1",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/abhin/CLionProjects/Learning_C++/cmake-build-debug",
+		"source" : "C:/Users/abhin/CLionProjects/Learning_C++"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
