@@ -47,7 +47,9 @@ int main() {
             std::cout << "Current running average: " << avg.get_average() << std::endl;
             count++;
         }
-    } while (input != 0 && count < 5);
+    }
+
+    while (input != 0 && count < 5);
 
     std::cout << "Final running average: " << avg.get_average() << std::endl;
 
