@@ -205,6 +205,39 @@ build 3.1.exe: CXX_EXECUTABLE_LINKER__3.2e1_Debug CMakeFiles/3.1.dir/3.1.cpp.obj
   TARGET_IMPLIB = lib3.1.dll.a
   TARGET_PDB = 3.1.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target 3.2
+
+
+#############################################
+# Order-only phony target for 3.2
+
+build cmake_object_order_depends_target_3.2: phony || CMakeFiles/3.2.dir
+
+build CMakeFiles/3.2.dir/3.2.cpp.obj: CXX_COMPILER__3.2e2_unscanned_Debug C$:/Users/abhin/CLionProjects/Learning_C++/3.2.cpp || cmake_object_order_depends_target_3.2
+  DEP_FILE = CMakeFiles\3.2.dir\3.2.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\3.2.dir
+  OBJECT_FILE_DIR = CMakeFiles\3.2.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target 3.2
+
+
+#############################################
+# Link the executable 3.2.exe
+
+build 3.2.exe: CXX_EXECUTABLE_LINKER__3.2e2_Debug CMakeFiles/3.2.dir/3.2.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\3.2.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = 3.2.exe
+  TARGET_IMPLIB = lib3.2.dll.a
+  TARGET_PDB = 3.2.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -241,6 +274,8 @@ build 2.2: phony 2.2.exe
 
 build 3.1: phony 3.1.exe
 
+build 3.2: phony 3.2.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -249,7 +284,7 @@ build 3.1: phony 3.1.exe
 #############################################
 # Folder: C:/Users/abhin/CLionProjects/Learning_C++/cmake-build-debug
 
-build all: phony 1.1.exe 1.2.exe 2.1.exe 2.2.exe 3.1.exe
+build all: phony 1.1.exe 1.2.exe 2.1.exe 2.2.exe 3.1.exe 3.2.exe
 
 # =============================================================================
 # Built-in targets
