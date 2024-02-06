@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -12,17 +13,19 @@ private:
 public:
     House() : area(0.0), price(0) {}
 
-    House(const std::string& address, double area, int price)
-            : address(address), area(area), price(price) {}
+    House(std::string  address, double area, int price)
+            : address(std::move(address)), area(area), price(price) {}
 
     friend std::ostream& operator<<(std::ostream& out, const House& house) {
-        return out << house.address << " " << house.area << " " << house.price;
+        return out << house.address << "," << house.area << "," << house.price;
     }
 
     friend std::istream& operator>>(std::istream& in, House& house) {
-        std::getline(in, house.address, ' ');
-        in >> house.area >> house.price;
-        in.ignore(); // Ignore the newline character
+        std::getline(in, house.address, ',');
+        in >> house.area;
+        in.ignore();
+        in >> house.price;
+        in.ignore();
         return in;
     }
 
@@ -46,22 +49,17 @@ public:
 int main() {
     std::vector<House> houses(5);
 
-    // Ask user to enter information for five houses
     for (int i = 0; i < 5; ++i) {
-        std::cout << "Enter information for house " << i + 1 << " (address area price): ";
+        std::cout << "Enter information for house " << i + 1 << " (address, area, price): ";
         std::cin >> houses[i];
     }
 
-    // Sort the vector of houses
     std::sort(houses.begin(), houses.end());
 
-    // Print the sorted house information
     std::cout << std::endl;
     std::cout << "Sorted house information:\n";
     std::cout << std::endl;
     for (const auto& house : houses) {
         std::cout << house << std::endl;
     }
-
-    return 0;
 }
