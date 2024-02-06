@@ -3,79 +3,106 @@
 //
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
+#include <ctime>
+#include <cstdlib>
 #include <iterator>
-#include <random>
 
 using namespace std;
 
-class IndexCounter {
-public:
-    IndexCounter() : index(0) {}
-    int operator()() { return ++index; }
-private:
-    int index;
-};
-
 class LottoNumberGenerator {
 public:
-    LottoNumberGenerator(int min, int max) : distribution(min, max) {}
+    LottoNumberGenerator(int min, int max) : numbers(), min(min), max(max) {
+        srand(time(NULL));
+    }
 
-    vector<int> operator()() {
-        vector<int> numbers(7);
-        generate(numbers.begin(), numbers.end(), [this]() { return distribution(engine); });
+    int operator()() {
+        int number;
+        do {
+            number = rand() % (max - min + 1) + min;
+        } while (find(numbers.begin(), numbers.end(), number) != numbers.end());
+        numbers.push_back(number);
+        return number;
+    }
+
+    const vector<int>& getNumbers() const {
         return numbers;
     }
 
 private:
-    default_random_engine engine{random_device{}()};
-    uniform_int_distribution<int> distribution;
+    vector<int> numbers;
+    int min;
+    int max;
+};
+
+struct PrintWithIndex {
+    int index = 1;
+    void operator()(int number) {
+        cout << "#" << index++ << ": " << number << endl;
+    }
 };
 
 int main() {
-    LottoNumberGenerator lotto(1, 40);
-    LottoNumberGenerator vikingLotto(1, 48);
-    LottoNumberGenerator euroJackpot(1, 50);
+    char continueGenerating;
 
-    IndexCounter indexCounter;
+    LottoNumberGenerator lottoGenerator(1, 40);
+    LottoNumberGenerator vikingLottoGenerator(1, 48);
+    LottoNumberGenerator eurojackpotGenerator(1, 50);
 
-    char choice;
     do {
-        vector<int> lottoNumbers = lotto();
-        vector<int> vikingLottoNumbers = vikingLotto();
-        vector<int> euroJackpotNumbers = euroJackpot();
+        vector<int> lottoNumbers(7);
+        vector<int> vikingLottoNumbers(6);
+        vector<int> eurojackpotNumbers(5);
 
-        cout << "Lotto:";
-        for_each(lottoNumbers.begin(), lottoNumbers.end(), [](int num) { cout << " " << num; });
+        generate(lottoNumbers.begin(), lottoNumbers.end(), lottoGenerator);
+        generate(vikingLottoNumbers.begin(), vikingLottoNumbers.end(), vikingLottoGenerator);
+
+        sort(lottoNumbers.begin(), lottoNumbers.end());
+        sort(vikingLottoNumbers.begin(), vikingLottoNumbers.end());
+
+        cout << "Lotto: ";
+        copy(lottoNumbers.begin(), lottoNumbers.end(), ostream_iterator<int>(cout, " "));
         cout << endl;
 
-        cout << "Viking lotto:";
-        for_each(vikingLottoNumbers.begin(), vikingLottoNumbers.end(), [](int num) { cout << " " << num; });
+        cout << "Viking lotto: ";
+        copy(vikingLottoNumbers.begin(), vikingLottoNumbers.end(), ostream_iterator<int>(cout, " "));
         cout << endl;
 
-        cout << "Eurojackpot:";
-        for_each(euroJackpotNumbers.begin(), euroJackpotNumbers.end(), [](int num) { cout << " " << num; });
-        cout << endl;
-
-        vector<int> commonNumbers;
+        // Find matching numbers between Lotto and Viking Lotto
+        cout << "Matched numbers in Lotto & Viking Lotto:" << endl;
+        vector<int> matchingNumbers1;
         set_intersection(lottoNumbers.begin(), lottoNumbers.end(),
                          vikingLottoNumbers.begin(), vikingLottoNumbers.end(),
-                         back_inserter(commonNumbers));
-        set_intersection(commonNumbers.begin(), commonNumbers.end(),
-                         euroJackpotNumbers.begin(), euroJackpotNumbers.end(),
-                         back_inserter(commonNumbers));
-
-        cout << "Matching numbers:" << endl;
-        for_each(commonNumbers.begin(), commonNumbers.end(), [&](int num) {
-            cout << "#" << indexCounter() << ": " << num << endl;
-        });
-
+                         back_inserter(matchingNumbers1));
+        PrintWithIndex printIndex1;
+        for_each(matchingNumbers1.begin(), matchingNumbers1.end(), printIndex1);
         cout << endl;
+
+        // Generate Eurojackpot numbers
+        generate(eurojackpotNumbers.begin(), eurojackpotNumbers.end(), eurojackpotGenerator);
+
+        sort(eurojackpotNumbers.begin(), eurojackpotNumbers.end());
+
+        cout << "Eurojackpot: ";
+        copy(eurojackpotNumbers.begin(), eurojackpotNumbers.end(), ostream_iterator<int>(cout, " "));
+        cout << endl;
+
+        // Find matching numbers in all three sets
+        cout << "Matching numbers in all three sets:" << endl;
+        vector<int> finalMatchingNumbers;
+        set_intersection(matchingNumbers1.begin(), matchingNumbers1.end(),
+                         eurojackpotNumbers.begin(), eurojackpotNumbers.end(),
+                         back_inserter(finalMatchingNumbers));
+
+        PrintWithIndex printIndex2;
+        for_each(finalMatchingNumbers.begin(), finalMatchingNumbers.end(), printIndex2);
+        cout << endl;
+
         cout << "Continue? (y/n): ";
-        cin >> choice;
-        cout << endl;
-    } while (choice == 'y' || choice == 'Y');
+        cin >> continueGenerating;
+
+    } while (continueGenerating == 'y' || continueGenerating == 'Y');
 
     return 0;
 }
